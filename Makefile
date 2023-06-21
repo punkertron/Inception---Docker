@@ -18,4 +18,4 @@ fclean: clean
 
 re: clean all
 
-.PHONY: all ps down clean fclean
+.PHONY: all ps down clean fclean re
