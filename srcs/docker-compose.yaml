@@ -8,14 +8,25 @@ services:
     ports:
       - "443:443"
     restart: on-failure
+
   maraidb:
     build: ./requirements/mariadb/
     networks:
       - 42net
     ports:
       - "3306:3306"
+   # volumes:
+   #- db:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "pass"
+
     restart: on-failure
+
 
 networks:
   42net:
     driver: bridge
+
+      #volumes:
+      #  db:
+

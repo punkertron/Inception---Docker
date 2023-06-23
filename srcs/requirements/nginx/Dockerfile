@@ -9,7 +9,7 @@ RUN apt-get update && \
 RUN openssl req -x509 -sha256 -nodes -days 1024 -newkey rsa:4096 \
 	-keyout /etc/ssl/private/nginx.key \
 	-out /etc/ssl/certs/nginx.crt \
-	-subj "/C=FR/ST=Paris/L=Paris/O=school_42/CN=drohanne/"
+	-subj "/C=AM/ST=Yerevan/L=Yerevan/O=school_42/CN=drohanne/emailAddress=drohanne@student.42yerevan.am/"
 
 RUN mkdir /site_data && echo "Hello world" > /site_data/index.html
 

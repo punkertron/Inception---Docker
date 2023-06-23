@@ -1,7 +1,7 @@
 DC = docker-compose
 DC_FILE = ./srcs/docker-compose.yaml
 
-all:
+all:	down
 	${DC} -f ${DC_FILE} up --build -d
 
 ps:
