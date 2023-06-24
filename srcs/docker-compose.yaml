@@ -2,6 +2,8 @@ version: "3.8"
 
 services:
   nginx:
+    container_name: nginx
+    depends on: wordpress
     build: ./requirements/nginx/
     networks:
       - 42net
@@ -10,16 +12,22 @@ services:
     restart: on-failure
 
   maraidb:
+    container_name: mariadb
     build: ./requirements/mariadb/
     networks:
       - 42net
-    ports:
-      - "3306:3306"
-   # volumes:
-   #- db:/var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: "pass"
-
+    volumes:
+      - db:/var/lib/mysql
+    restart: on-failure
+  
+  wordpress:
+    container_name: wordpress
+    depends_on: mariadb
+    build: ./requirements/mariadb/
+    networks:
+      - 42net;
+    volumes:
+      - wp:/var/www/html/wordpress
     restart: on-failure
 
 
@@ -27,6 +35,16 @@ networks:
   42net:
     driver: bridge
 
-      #volumes:
-      #  db:
 
+volumes:
+  db:
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/drohanne/data/mariadb
+
+  wp:
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/drohanne/data/wordpress

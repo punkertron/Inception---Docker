@@ -3,6 +3,33 @@ FROM debian:bullseye
 EXPOSE 9000
 
 RUN apt-get update && \
-	apt-get install php7.3 php-mysql php-fpm -y && \
+	apt-get install -y \
+		curl \
+		php-cli \
+		php-mysqli \
+		php-fpm \
+		#php-dom \
+		#php-exif \
+		#php-fileinfo \
+		#php-imagick \
+		#php-mbstring \
+		#php-xml \
+		#php-zip \
+		wget \
+		unzip \
+		mariadb-client && \
+	sed -i 's/listen = \/run\/php\/php7.4-fpm.sock/listen = 0.0.0.0:9000/g' /etc/php/7.4/fpm/pool.d/www.conf && \
 	apt-get clean && rm -rf /var/lib/apt/lists/*
 
+WORKDIR /var/www
+
+RUN wget https://wordpress.org/latest.zip && \
+	unzip latest.zip && \
+	mv wordpress/* . && \
+	rm -rf wordpress latest.zip
+
+COPY ./conf/ .
+
+RUN service php7.4-fpm start
+
+ENTRYPOINT ["php-fpm7.4", "-F"]
