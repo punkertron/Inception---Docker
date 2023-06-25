@@ -4,7 +4,7 @@ EXPOSE 9000
 
 RUN apt-get update && \
 	apt-get install -y \
-		curl \
+		php7.4 \
 		php-cli \
 		php-mysqli \
 		php-fpm \
@@ -16,8 +16,7 @@ RUN apt-get update && \
 		#php-xml \
 		#php-zip \
 		wget \
-		unzip \
-		mariadb-client && \
+		unzip && \
 	sed -i 's/listen = \/run\/php\/php7.4-fpm.sock/listen = 9000/g' /etc/php/7.4/fpm/pool.d/www.conf && \
 	apt-get clean && rm -rf /var/lib/apt/lists/*
 
@@ -27,8 +26,12 @@ RUN wget https://wordpress.org/latest.zip && \
 	unzip latest.zip && \
 	rm -rf latest.zip
 
-COPY ./conf/ ./wordpress
+WORKDIR /var/www/html/wordpress
+
+COPY ./conf/ .
+COPY ./tools/ .
 
 RUN service php7.4-fpm start
+#&& \	bash initial_setup.sh
 
 ENTRYPOINT ["php-fpm7.4", "-F"]
