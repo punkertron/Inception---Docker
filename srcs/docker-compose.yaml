@@ -27,7 +27,7 @@ services:
     container_name: wordpress
     depends_on:
       - mariadb
-    build: ./requirements/mariadb/
+    build: ./requirements/wordpress/
     networks:
       - 42net
     volumes:

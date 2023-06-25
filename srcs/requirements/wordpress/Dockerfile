@@ -21,14 +21,14 @@ RUN apt-get update && \
 	sed -i 's/listen = \/run\/php\/php7.4-fpm.sock/listen = 0.0.0.0:9000/g' /etc/php/7.4/fpm/pool.d/www.conf && \
 	apt-get clean && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /var/www
+WORKDIR /var/www/html/
 
 RUN wget https://wordpress.org/latest.zip && \
 	unzip latest.zip && \
-	mv wordpress/* . && \
-	rm -rf wordpress latest.zip
+	rm -rf latest.zip
 
-COPY ./conf/ .
+COPY ./conf/ ./wordpress
+RUN pwd && ls -lR
 
 RUN service php7.4-fpm start
 
