@@ -31,7 +31,7 @@ WORKDIR /var/www/html/wordpress
 COPY ./conf/ .
 COPY ./tools/ .
 
-RUN service php7.4-fpm start
-#&& \	bash initial_setup.sh
+RUN bash initial_setup.sh
+#service php7.4-fpm start && \
 
 ENTRYPOINT ["php-fpm7.4", "-F"]
