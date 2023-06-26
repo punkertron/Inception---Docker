@@ -11,8 +11,6 @@ RUN openssl req -x509 -sha256 -nodes -days 1024 -newkey rsa:4096 \
 	-out /etc/ssl/certs/nginx.crt \
 	-subj "/C=AM/ST=Yerevan/L=Yerevan/O=school_42/CN=drohanne/emailAddress=drohanne@student.42yerevan.am/"
 
-RUN mkdir /site_data && echo "Hello world" > /site_data/index.html
-
 COPY ./conf/nginx.conf /etc/nginx/conf.d/
 
 ENTRYPOINT ["nginx", "-g", "daemon off;"]

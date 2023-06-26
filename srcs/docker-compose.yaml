@@ -1,6 +1,26 @@
 version: "3.8"
 
 services:
+  mariadb:
+    container_name: mariadb
+    build: ./requirements/mariadb/
+    networks:
+      - 42net
+    volumes:
+      - db:/var/lib/mysql
+    restart: on-failure
+ 
+  wordpress:
+    container_name: wordpress
+    depends_on:
+      - mariadb
+    build: ./requirements/wordpress/
+    networks:
+      - 42net
+    volumes:
+      - wp:/var/www/html/wordpress
+    restart: on-failure
+ 
   nginx:
     container_name: nginx
     depends_on:
@@ -14,40 +34,23 @@ services:
       - "443:443"
     restart: on-failure
 
-  mariadb:
-    container_name: mariadb
-    build: ./requirements/mariadb/
-    networks:
-      - 42net
-    volumes:
-      - db:/var/lib/mysql
-    restart: on-failure
-  
-  wordpress:
-    container_name: wordpress
-    depends_on:
-      - mariadb
-    build: ./requirements/wordpress/
-    networks:
-      - 42net
-    volumes:
-      - wp:/var/www/html/wordpress
-    restart: on-failure
-
 
 networks:
   42net:
+    name: 42net
     driver: bridge
 
 
 volumes:
   db:
+    name: db
     driver_opts:
       o: bind
       type: none
       device: /home/drohanne/data/mariadb
 
   wp:
+    name: wp
     driver_opts:
       o: bind
       type: none
