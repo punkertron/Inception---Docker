@@ -27,7 +27,6 @@ RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.ph
 	mv wp-cli.phar /usr/local/bin/wp
 
 WORKDIR /var/www/html/wordpress
-COPY ./conf/ .
 COPY ./tools/ .
 
 RUN service php7.4-fpm start

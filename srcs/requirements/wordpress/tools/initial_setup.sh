@@ -2,6 +2,8 @@
 
 wp core download --allow-root
 
+mv wp-config-sample.php wp-config.php
+
 wp config set DB_NAME $DB_NAME  --allow-root
 wp config set DB_USER $DB_USER  --allow-root
 wp config set DB_PASSWORD $DB_PASS  --allow-root
