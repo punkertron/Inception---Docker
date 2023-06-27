@@ -22,14 +22,11 @@ RUN apt-get update && \
 	sed -i 's/listen = \/run\/php\/php7.4-fpm.sock/listen = 9000/g' /etc/php/7.4/fpm/pool.d/www.conf && \
 	apt-get clean && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /var/www/html/
-
-RUN wget https://wordpress.org/latest.zip && \
-	unzip latest.zip && \
-	rm -rf latest.zip
+RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
+	chmod +x wp-cli.phar && \
+	mv wp-cli.phar /usr/local/bin/wp
 
 WORKDIR /var/www/html/wordpress
-
 COPY ./conf/ .
 COPY ./tools/ .
 

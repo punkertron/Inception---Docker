@@ -1,25 +1,26 @@
 #!/bin/bash
 
-wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-chmod +x wp-cli.phar
-mv wp-cli.phar /usr/local/bin/wp
+wp core download --allow-root
 
-chmod -R 775 /var/www/html/wordpress
+wp config set DB_NAME $DB_NAME  --allow-root
+wp config set DB_USER $DB_USER  --allow-root
+wp config set DB_PASSWORD $DB_PASS  --allow-root
+wp config set DB_HOST $WDB_HOST  --allow-root
 
 wp core install \
-	--url=drohanne.42.fr \
-	--title=Wordpress\
-	--admin_user=root \
-	--admin_password=strongpassword \
-	--admin_email=drohanne@student.42yerevan.am \
+	--url=$W_URL \
+	--title=$W_TITLE \
+	--admin_user=$W_ADM_USER \
+	--admin_password=$W_ADM_PASS \
+	--admin_email=$W_ADM_MAIL \
 	--allow-root
 
-wp user create Vladislav vladislav@example.com \
-	--usserpass=password \
-       	--role=author \
+wp user create $W_USER $W_MAIL \
+	--user_pass=$W_PASS \
+       	--role=$W_ROLE \
 	--allow-root 
 
-#wp theme install twentytwenty-three --activate \
-#	--allow-root
+wp theme install twentytwentythree --activate \
+	--allow-root
 
 php-fpm7.4 -F

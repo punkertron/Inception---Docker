@@ -2,7 +2,7 @@ FROM debian:bullseye
 
 EXPOSE 3306
 
-COPY ./conf /var/www/
+COPY ./tools /var/www/
 
 RUN apt-get update && \
 	apt-get install mariadb-server -y && \

@@ -19,6 +19,7 @@ services:
       - 42net
     volumes:
       - wp:/var/www/html/wordpress
+    env_file: .env
     restart: on-failure
  
   nginx:
