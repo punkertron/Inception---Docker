@@ -12,9 +12,13 @@ down:
 
 clean:
 	docker stop $$(docker ps -a -q);\
-	docker system prune -a --force --volumes
+	docker system prune -a --force;\
+	docker volume prune --force;\
+	docker network prune --force
+
 
 fclean: clean
+	sudo rm -rf /home/drohanne/data/wordpress/* /home/drohanne/data/mariadb/*
 
 re: clean all
 
