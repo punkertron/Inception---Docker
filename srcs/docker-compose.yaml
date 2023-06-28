@@ -36,6 +36,17 @@ services:
       - "443:443"
     restart: always
 
+  adminer:
+    container_name: adminer
+    depends_on:
+      - mariadb
+    build: ./bonus/adminer/
+    networks:
+      - 42net
+    ports:
+      - "8080:8080"
+    restart: always
+
 
 networks:
   42net:
