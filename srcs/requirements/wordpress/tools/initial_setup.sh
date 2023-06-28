@@ -1,5 +1,7 @@
 #!/bin/bash
 
+
+#core
 wp core download --allow-root
 
 mv wp-config-sample.php wp-config.php
@@ -24,5 +26,18 @@ wp user create $W_USER $W_MAIL \
 
 wp theme install twentytwentythree --activate \
 	--allow-root
+
+
+
+#redis
+
+chmod -R 777 wp-content/
+
+#wp config set WP_REDIS_HOST $REDIS_HOST --allow-root
+#wp config set WP_REDIS_PORT 6379 --allow-root
+
+#wp plugin install redis-cache --activate --allow-root
+#wp plugin update --all --allow-root
+#wp redis enable --allow-root
 
 php-fpm7.4 -F

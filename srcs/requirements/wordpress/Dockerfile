@@ -17,6 +17,7 @@ RUN apt-get update && \
 		openssl \
 		php7.4-xml \
 		php7.4-zip \
+		php7.4-redis \
 		wget \
 		unzip && \
 	sed -i 's/listen = \/run\/php\/php7.4-fpm.sock/listen = 9000/g' /etc/php/7.4/fpm/pool.d/www.conf && \
