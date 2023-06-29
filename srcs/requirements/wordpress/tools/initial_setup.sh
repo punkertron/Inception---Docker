@@ -31,13 +31,17 @@ wp theme install twentytwentythree --activate \
 
 #redis
 
-chmod -R 777 wp-content/
+chmod -R 777 wp-content
+chmod -R 777 wp-admin
 
-#wp config set WP_REDIS_HOST $REDIS_HOST --allow-root
-#wp config set WP_REDIS_PORT 6379 --allow-root
+wp plugin install redis-cache --activate --allow-root
 
-#wp plugin install redis-cache --activate --allow-root
-#wp plugin update --all --allow-root
-#wp redis enable --allow-root
+wp config set WP_REDIS_HOST $REDIS_HOST --allow-root
+wp config set WP_REDIS_PORT 6379 --allow-root
+wp config set WP_REDIS_DATABASE 0 --allow-root
+wp config set WP_REDIS_TIMEOUT 1 --allow-root
+wp config set WP_REDIS_READ_TIMEOUT 1 --allow-root
+
+wp redis enable --allow-root
 
 php-fpm7.4 -F

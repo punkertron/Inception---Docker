@@ -55,17 +55,17 @@ services:
       - 42net
     restart: always
 
-  ftp:
-    container_name: ftp
-    build: ./bonus/ftp/
-    networks:
-      - 42net
-    volumes:
-      - wp:/var/www/html/wordpress
-    ports:
-      - "21:21"
-      - "40000-50000:40000-50000"
-    restart: always
+#  ftp:
+#    container_name: ftp
+#    build: ./bonus/ftp/
+#    networks:
+#      - 42net
+#    volumes:
+#      - wp:/var/www/html/wordpress
+#    ports:
+#      - "21:21"
+#      - "40000-50000:40000-50000"
+#    restart: always
 
 
 networks:
