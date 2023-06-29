@@ -67,6 +67,20 @@ services:
       - "21:21"
     restart: always
 
+  cadvisor:
+    container_name: cadvisor
+    build: ./bonus/cadvisor/
+    networks:
+      - 42net
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    ports:
+      - "8081:8080"
+    restart: always
 
 networks:
   42net:
