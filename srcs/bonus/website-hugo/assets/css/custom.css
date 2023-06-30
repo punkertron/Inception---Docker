@@ -1,0 +1,29 @@
+.link-wordpress {
+  background: rgb(131, 58, 180);
+  background: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+}
+
+.link-adminer {
+ background: rgb(250, 138, 138);
+ background: linear-gradient(
+   90deg,
+   rgba(250, 138, 138, 1) 0%,
+   rgba(56, 198, 138, 1) 50%,
+   rgba(236, 176, 44, 1) 100%
+ );
+}
+
+.link-cadvisor {
+  background: rgb(250, 58, 180);
+  background: linear-gradient(
+    90deg,
+    rgba(250, 233, 135, 1) 0%,
+    rgba(59, 69, 203, 1) 50%,
+    rgba(184, 134, 64, 1) 100%
+  );
+}

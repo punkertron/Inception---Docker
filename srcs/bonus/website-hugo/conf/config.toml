@@ -1,0 +1,22 @@
+theme = "lynx"
+title = "My Website"
+
+enableEmoji = true
+disableKinds = ["taxonomy", "term"]
+
+[author]
+  name = "Homepage - drohanne"
+  headline = "All links to my services"
+  image = "42_logo.jpg"
+  links = [
+    { wordpress = { href = "https://drohanne.42.fr", text = "Wordpress" } },
+    { adminer = { href = "http://localhost:8080", text = "Adminer" } },
+    { cadvisor = { href = "http://localhost:8081", text = "Cadvisor" } },
+  ]
+
+[markup.highlight]
+  noClasses = false
+
+[markup.goldmark]
+[markup.goldmark.renderer]
+  unsafe = true

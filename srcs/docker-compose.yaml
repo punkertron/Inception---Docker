@@ -82,6 +82,20 @@ services:
       - "8081:8080"
     restart: always
 
+  website-hugo:
+    container_name: website-hugo
+    depends_on:
+      - adminer
+      - wordpress
+      - cadvisor
+    build: ./bonus/website-hugo
+    networks:
+      - 42net
+    ports:
+      - "1313:1313"
+    restart: always
+
+
 networks:
   42net:
     name: 42net
