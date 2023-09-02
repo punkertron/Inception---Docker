@@ -1,8 +1,12 @@
 DC = docker-compose
 DC_FILE = ./srcs/docker-compose.yaml
+DIRS = /home/drohanne/data/wordpress /home/drohanne/data/mariadb
 
-all:	down
+all:	down | ${DIRS}
 	${DC} -f ${DC_FILE} up --build -d
+
+${DIRS}:
+	sudo mkdir -p ${DIRS}
 
 ps:
 	${DC} -f ${DC_FILE} ps -a
@@ -18,7 +22,7 @@ clean:
 
 
 fclean: clean
-	sudo rm -rf /home/drohanne/data/wordpress/* /home/drohanne/data/mariadb/*
+	sudo rm -rf ${DIRS}
 
 re: clean all
 
