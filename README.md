@@ -28,6 +28,7 @@ After that, enter `localhost:1313` in the address bar.
 
 ![MapDraw](images/Site.png)
 
+<br />
 To test **ftp-server** you can use [**FileZilla**](https://filezilla-project.org/) using `port = 21` these credentials:
 ```
 FTP_USER=ftpuser
